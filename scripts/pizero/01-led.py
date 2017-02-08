@@ -1,19 +1,21 @@
+#PIZERO
+
 import time
 import RPi.GPIO as gpio
+gpio.setmode(gpio.BOARD)
+gpio.setwarnings(False)
 
-PIN_R,PIN_G,PIN_B = 15,11,13
-pins = (PIN_R,PIN_G,PIN_B)
+R,G,B = 15,11,13
 
 def light_pin(lit_pin):
-    for pin in pins:
+    for pin in [R,G,B]:
         gpio.output(pin, pin != lit_pin)
 
-gpio.setmode(gpio.BOARD)
 
-for pin in pins:
+for pin in [R,G,B]:
     gpio.setup(pin, gpio.OUT, initial=gpio.HIGH)
 
 while True:
-    for pin in pins:
+    for pin in [R,G,B]:
         light_pin(pin)
         time.sleep(1)

@@ -1,18 +1,19 @@
+#PIZERO
+
 import colorsys
 import time
 import RPi.GPIO as gpio
-
-PIN_R,PIN_G,PIN_B = 15,11,13
-red,green,blue = (None,None,None)
-
 gpio.setmode(gpio.BOARD)
+gpio.setwarnings(False)
 
-for pin in [PIN_R,PIN_G,PIN_B]:
+R,G,B = 15,11,13
+
+for pin in [R,G,B]:
     gpio.setup(pin, gpio.OUT, initial=gpio.HIGH)
 
-red = gpio.PWM(PIN_R,100)
-green = gpio.PWM(PIN_G,100)
-blue = gpio.PWM(PIN_B,100)
+red = gpio.PWM(R,100)
+green = gpio.PWM(G,100)
+blue = gpio.PWM(B,100)
 
 for led in [red,green,blue]:
     led.start(0)
